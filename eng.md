@@ -1207,3 +1207,18 @@
 
 -------------------------------------------------------------
 
+## 2023-03-06
+
+기록 없이 대충 몇 영상 시청함.
+
+[유튜브 영상](https://www.youtube.com/watch?v=bFIVYRfyb3E)
+
+**existential** (인간의)존재에 관한, 실존주의적인
+
+[유튜브 영상](https://www.youtube.com/watch?v=3Tu40neoRMw)
+
+**let alone** ~는 커녕(~는 고사하고)
+
+[유튜브 영상](https://www.youtube.com/watch?v=oqnwZN0Y1vs)
+
+-------------------------------------------------------
