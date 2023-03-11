@@ -92,6 +92,7 @@ mean(data)
 sd(data)
 median(data)
 iqr = IQR(data)
+quantile(data,0.75)
 iqr
 iqrs = iqr/2
 iqrs
