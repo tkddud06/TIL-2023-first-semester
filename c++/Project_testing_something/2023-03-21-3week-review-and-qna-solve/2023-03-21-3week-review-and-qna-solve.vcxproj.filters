@@ -15,7 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cin ignore과 clear 관련.cpp">
+    <ClCompile Include="배열포인터와 포인터 등 포인터 개념.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="malloc을 통한 이차원배열 할당 방법.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="static과 const의 초기화 관련.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="베열의 레퍼런스, 참조 관련.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
