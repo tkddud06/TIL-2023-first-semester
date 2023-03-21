@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5b0576da-8ad5-459e-8ca0-a18c8629b3e1}</ProjectGuid>
-    <RootNamespace>My202303213weekreviewandqnasolve</RootNamespace>
+    <ProjectGuid>{e4801927-db66-4e5d-8af8-d769a9905d65}</ProjectGuid>
+    <RootNamespace>Multisourcetest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>2023-03-21-3week</ProjectName>
+    <ProjectName>2023-03-21-Multi-source-test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,16 +128,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="malloc을 통한 이차원배열 할당 방법.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="static과 const의 초기화 관련.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="배열포인터와 포인터 등 포인터 개념.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="배열의 레퍼런스, 참조 관련.cpp" />
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="func2.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="print.h" />
+    <ClCompile Include="print.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
