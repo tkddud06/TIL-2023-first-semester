@@ -21,5 +21,6 @@ int main()
 	// 결론 : 초기화 안하면, 자동으로 0으로 초기화 됨. 
 	// statc 특징 중 하나는, 외부에서 직접 변수에 접근할 수 없어, 은닉성 있다는 점도 있대. 참고.
 	// https://blog.naver.com/dhrtpdnjs/222974544617
+	// https://cafe.naver.com/cafec/393651?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImNhZmVjIiwiYXJ0aWNsZUlkIjozOTM2NTEsImlzc3VlZEF0IjoxNjc5NDk1MTg5NTk4fQ.A6lQVoXY1XwgMp6TvmVu4TilLnyZPThK7nBCHrPvSjk 질문글 보시다시피, 해당 함수든, 클래스든 외부에서 직접 접근 안됨.
 	return 0;
 }
