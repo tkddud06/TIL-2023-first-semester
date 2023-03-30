@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ac503f8c-26c4-4115-8f4f-e1e8b6ccccc8}</ProjectGuid>
-    <RootNamespace>hw1MineSweeperGame</RootNamespace>
+    <ProjectGuid>{e3000d70-5cf6-421b-8ceb-9e7a29dfe435}</ProjectGuid>
+    <RootNamespace>My202303284week</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MineSweeperGame%282022041062 최상영%29.cpp" />
+    <ClCompile Include="함수의 매개변수 관련.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

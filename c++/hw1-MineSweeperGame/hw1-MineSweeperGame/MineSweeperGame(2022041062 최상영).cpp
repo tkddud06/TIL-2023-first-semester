@@ -48,7 +48,7 @@ int getBombCount(int MineMapMask[][DIM]) { // 깃발을 꽂아둔 것이 몇개인지 세주는
 			if (mask(x, y, MineMapMask) == Flag) count++; // mask판을 확인함으로써 깃발 수를 센다.
 	return count;
 }
-void print(int MineMapMask[][DIM], int MineMapLabel[][DIM]) { // 화면을 출력하는 함수. 내용은 아래와 같다.
+void print(int MineMapMask[][DIM], int MineMapLabel[][DIM]) { // 화면을 출력하는 함수.
 	system("cls");
 	printf("   발견:%2d   전체:%2d\n", getBombCount(MineMapMask), nBomb); // 깃발 수, 총 지뢰 수 출력
 	printf("    ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨\n"); // 열 번호 출력
@@ -66,7 +66,7 @@ void print(int MineMapMask[][DIM], int MineMapLabel[][DIM]) { // 화면을 출력하는
 		printf("\n");
 	}
 }
-int countNbrBombs(int x, int y, int MineMapLabel[][DIM]) { // 해당 칸에, 주변의 지뢰 수를 숫자로 표기해주기 위한 카운트 함수
+int countNbrBombs(int x, int y, int MineMapLabel[][DIM]) { // 해당 칸 주변의 지뢰 수를 숫자로 표기해주기 위한 카운트 함수
 	int count = 0; // 세기 위한 변수
 	for (int yy = y - 1; yy <= y + 1; yy++)
 		for (int xx = x - 1; xx <= x + 1; xx++) // 해당 칸의 상,하,좌,우,대각선(해당 칸을 둘러싸고 있는 칸)을 확인하여, 총 지뢰 수를 체크함
@@ -90,9 +90,9 @@ void init(int MineMapMask[][DIM], int MineMapLabel[][DIM], int total = 9) { // �
 		} while (label(x, y, MineMapLabel) != Empty);
 		label(x, y, MineMapLabel) = Bomb; // x, y위치의 label판에 bomb 표시, 해당 위치를 지뢰로 설정
 	}
-	for (int y = 0; y < ny; y++) // label판에 주변의 지뢰 수를 저장해주기 위한 for문
+	for (int y = 0; y < ny; y++) // label판에, 칸들의 주변 지뢰 수를 저장해주기 위한 for문
 		for (int x = 0; x < nx; x++)
-			if (label(x, y,  MineMapLabel) == Empty)
+			if (label(x, y,  MineMapLabel) == Empty) // 해당 칸이 지뢰가 아니라면
 				label(x, y, MineMapLabel) = countNbrBombs(x, y, MineMapLabel);
 }
 bool getPos(int& x, int& y) { // 입력받는 함수 (레퍼런스 사용해서, 실질적으로 여러 값을 입력받음)
@@ -134,8 +134,8 @@ void playMineSweeper(int total, int MineMapMask[][DIM], int MineMapLabel[][DIM])
 void main()
 {
 	int total; // 총 지뢰수 변수
-	int	MineMapMask[DIM][DIM]; // 지뢰판의 mask 상태를 저장하는 판
-	int	MineMapLabel[DIM][DIM]; // 지뢰판의 label 상태를 저장하는 판
+	int	MineMapMask[DIM][DIM]; // 지뢰판의 mask 상태를 저장하는 판(2차원 배열)
+	int	MineMapLabel[DIM][DIM]; // 지뢰판의 label 상태를 저장하는 판(2차원 배열)
 	printf(" <Mine Sweeper>\n");
 	printf(" 매설할 총 지뢰의 개수 입력 : ");
 	scanf("%d", &total); // 매설할 총 지뢰 수 입력받기

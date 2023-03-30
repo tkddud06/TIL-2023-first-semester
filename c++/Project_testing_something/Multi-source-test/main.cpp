@@ -1,5 +1,7 @@
+// #pragma once // 여기 쓰는건 무의미. 해당 cpp나 헤더에 써줘야됨.
 #include <iostream>
 #include "print.h"
+#include "print.h" // 해당 헤더에 pragma once 안되있으면 에러. pragma 추가해준 후에도, 어느정도 에러 유지. 아마 print.cpp를 일부 수정하거나 해서, 인식시켜주면 되는듯. 아니 또 아예 없어도 되는데? 나도 잘 모르겠다 ㅋㅋㅋ
 
 extern int a; // extern은 가져와서 쓰는 입장에서, 사용.
 // 만약 a가 다른 코드에서, 함수 안에 있다면, 에러.
