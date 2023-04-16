@@ -16,7 +16,7 @@ dhyper(x=3,m=6,n=39,k=6)
 dhyper(x=4,m=6,n=39,k=6)
 dhyper(x=5,m=6,n=39,k=6)
 dhyper(x=6,m=6,n=39,k=6)
-
+####### 헷갈려서 다시 봐야겠다.
 # 로또 꽝일 확률
 phyper(q=2,m=6,n=39,k=6)
 

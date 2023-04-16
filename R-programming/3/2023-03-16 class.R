@@ -1,4 +1,4 @@
-blood=read.table("C:\\Users\\ProSet\\git\\TIL-2023-summer-season\\R-programming\\2\\blooddatain10p.txt", header=F)
+blood=read.table("C:/Users/tkddu/git/TIL-2023-summer-season/R-programming/2/blooddatain10p.txt", header=F)
 # false가 디폴트
 str(blood)
 table(blood$V1)
@@ -7,7 +7,7 @@ barplot(table(blood$V1)) # 막대그래프
 #원형 그래프
 slices = c(8,1,10,5) # == table(blood$V1)
 lables=c("A ","AB ","B ","O ")
-pie(slices,lables,main="Pie Graph(1)")
+pie(slices,lables,main="Pie Graph(1)") # 위 barplot처럼 테이블을 바로 쓰면, label을 쓰지 않아도 자동으로 해줌.
 pie(slices,lables)
 # label을 뭐 더 넣어주고 뭐 하는건 스킵한다는데? 뭐말하는거지, 
 # 범주,상대도수 결합 이런거 하는거 말하는건가?
@@ -52,4 +52,5 @@ str(students)
  #weight = c(54,56,56,64,62,64,82,67,71,74)
 attach(students)
 plot(weight,height,main="Scatter plot")
-cor(weight,height) # 공분산
+cor(weight,height) # 상관계수
+cov # 가 공분산

@@ -15,10 +15,10 @@
 typedef enum{
 	lparen = 0,  /* ( 왼쪽 괄호 */
 	rparen = 9,  /* ) 오른쪽 괄호*/
-	times = 7,   /* * 곱셈 */
+	times = 6,   /* * 곱셈 */
 	divide = 6,  /* / 나눗셈 */
-	plus = 5,    /* + 덧셈 */
-	minus = 4,   /* - 뺄셈 */
+	plus = 4,    /* + 덧셈 */
+	minus = 4,   /* - 뺄셈 */ // plus와 minus, 그리고 times와 divide를 다른 우선순위로 구분하게 되면, 오류 발생할 수 있다.
 	operand = 1 /* 피연산자 */
 } precedence;
 
@@ -55,7 +55,7 @@ int main()
 		printf("----------------------------------------------------------------\n");
 		printf(" Infix=i,   Postfix=p,  Eval=e,   Debug=d,   Reset=r,   Quit=q \n");
 		printf("----------------------------------------------------------------\n");
-
+		printf("[--------------  [최상영]  	[2022041062]  --------------]\n");
 		printf("Command = ");
 		scanf(" %c", &command);
 
@@ -189,18 +189,15 @@ void toPostfix()
 			}
 			postfixPop(); // '(' 제거
 		}
-		else if (postfixStackTop == -1 || getPriority(postfixStack[postfixStackTop]) <= current_priority) // 현재 x의 우선순위가 현재 포스트픽스스택의 탑 내용물 우선순위보다 크거나 같다면(빠르거나 같다면)
-		{ // 스택에 추가하기
-			postfixPush(x);
-		}
-		else // 현재 x의 우선순위가 현재 포스트픽스스택의 탑 내용물보다 작은(느린) 나머지 경우
+		else
 		{
-			// 포스트픽스스택의 탑 내용물 우선순위가 x의 우선순위보다 작을 때까지 모두 빼내고, 현재 x는 포스트픽스 스택에 넣기
-			while(getPriority(postfixStack[postfixStackTop]) >= current_priority)
+			// 스택이 비어있지 않으며, 현재 x의 우선순위가 현재 포스트픽스 스택의 탑 내용물보다 작은(느린) 나머지 경우에만
+			// 포스트픽스스택의 탑 내용물 우선순위가 x의 우선순위보다 작아지거나 다 뽑을 때까지 모두 빼내고, 현재 x는 포스트픽스 스택에 넣기
+			while(postfixStackTop != -1 && (getPriority(postfixStack[postfixStackTop]) >= current_priority))
 			{
 				temp = postfixPop();
 				charCat(&temp);
-			} //현재 x의 우선순위
+			} 
 			postfixPush(x);
 		} 
 
@@ -260,7 +257,7 @@ void evaluation()
 		{
 			evalPush(x-48); // operand라면, 숫자로 변환해서 스택에 추가
 		}
-		else
+		else // 아닌 경우는, 연산 진행
 		{
 				switch(x) 
 				{

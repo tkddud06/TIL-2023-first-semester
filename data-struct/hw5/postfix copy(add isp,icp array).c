@@ -3,6 +3,7 @@
  * ?Data Structures, Homework #5
  * ?School of Computer Science at Chungbuk National University
  */
+// 기존 코드서 부족한 부분 수정 : isp, icp 배열을 추가하여, '('로 인한 코드의 복잡성을 줄였습니다.
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -11,26 +12,24 @@
 #define MAX_STACK_SIZE 10
 #define MAX_EXPRESSION_SIZE 20
 
-/* stack 내에서 우선순위, lparen = 0 가장 낮음 */
+// stack 내에서 우선순위, lparen = 0 가장 낮음. 기존 원래 코드의 우선순위
 typedef enum{
-	lparen = 0,  /* ( 왼쪽 괄호 */
-	rparen = 9,  /* ) 오른쪽 괄호*/
-	times = 7,   /* * 곱셈 */
-	divide = 6,  /* / 나눗셈 */
-	plus = 5,    /* + 덧셈 */
-	minus = 4,   /* - 뺄셈 */
-	operand = 1 /* 피연산자 */
+	lparen,  // ( 왼쪽 괄호 
+	rparen,  // ) 오른쪽 괄호
+	plus,    // + 덧셈 
+	minus,   // - 뺄셈 
+	divide,  // / 나눗셈 
+	times,   // * 곱셈 
+	operand // 피연산자 
 } precedence;
 
-typedef enum{ // 스택 밖에서의 우선 순위
-	lparen = 10,  /* ( 왼쪽 괄호 */
-	rparen = 9,  /* ) 오른쪽 괄호*/
-	times = 7,   /* * 곱셈 */
-	divide = 6,  /* / 나눗셈 */
-	plus = 5,    /* + 덧셈 */
-	minus = 4,   /* - 뺄셈 */
-	operand = 1 /* 피연산자 */
-} out_stack_precedence;
+// 0,10 : isp내에서와 icp 내에서의 왼쪽 괄호 우선순위
+// 1 : 오른쪽 괄호 우선순위
+// 2 : +, - 우선순위
+// 3 : *, / 우선순위
+// -1 : operand 우선순위 
+static int isp[7] = {0,1,2,2,3,3,-1}; // in-stack precedence
+static int icp[7] = {10,1,2,2,3,3,-1}; // incoming precedence 
 
 char infixExp[MAX_EXPRESSION_SIZE];   	/* infix expression을 저장하는 배열 */
 char postfixExp[MAX_EXPRESSION_SIZE];	/* postfix로 변경된 문자열을 저장하는 배열 */
@@ -49,8 +48,6 @@ int evalPop();
 void getInfix();
 precedence getToken(char symbol);
 precedence getPriority(char x);
-out_stack_precedence out_getToken(char symbol);
-out_stack_precedence out_getPriority(char x);
 void charCat(char* c);
 void toPostfix();
 void debug();
@@ -67,7 +64,7 @@ int main()
 		printf("----------------------------------------------------------------\n");
 		printf(" Infix=i,   Postfix=p,  Eval=e,   Debug=d,   Reset=r,   Quit=q \n");
 		printf("----------------------------------------------------------------\n");
-
+		printf("[--------------  [최상영]  	[2022041062]  --------------]\n");
 		printf("Command = ");
 		scanf(" %c", &command);
 
@@ -145,31 +142,13 @@ precedence getToken(char symbol)
 	case ')' : return rparen;
 	case '+' : return plus;
 	case '-' : return minus;
-	case '/' : return divide;
 	case '*' : return times;
+	case '/' : return divide;
 	default : return operand;
 	}
 }
 
 precedence getPriority(char x)
-{
-	return getToken(x);
-}
-
-out_stack_precedence out_getToken(char symbol)
-{
-	switch(symbol) {
-	case '(' : return lparen;
-	case ')' : return rparen;
-	case '+' : return plus;
-	case '-' : return minus;
-	case '/' : return divide;
-	case '*' : return times;
-	default : return operand;
-	}
-}
-
-out_stack_precedence out_getPriority(char x)
 {
 	return getToken(x);
 }
@@ -206,31 +185,24 @@ void toPostfix()
 		{
 			charCat(&x);
 		}
-		else if (current_priority == lparen) // 현재 x가 '('라면
-		{ // 스택에 추가하기
-			postfixPush(x);
-		}
 		else if(current_priority == rparen) // 현재 x가 만약 ')'라면
 		{
-			while(getPriority(postfixStack[postfixStackTop]) != lparen) // '(' 이후의 모든 스택에 쌓인 연산자 빼내기
+			while(getPriority(postfixStack[postfixStackTop]) != isp[lparen]) // '(' 이후의 모든 스택에 쌓인 연산자 빼내기
 			{
 				temp = postfixPop();
 				charCat(&temp);
 			}
 			postfixPop(); // '(' 제거
 		}
-		else if (postfixStackTop == -1 || getPriority(postfixStack[postfixStackTop]) <= current_priority) // 현재 x의 우선순위가 현재 포스트픽스스택의 탑 내용물 우선순위보다 크거나 같다면(빠르거나 같다면)
-		{ // 스택에 추가하기
-			postfixPush(x);
-		}
-		else // 현재 x의 우선순위가 현재 포스트픽스스택의 탑 내용물보다 작은(느린) 나머지 경우
+		else
 		{
-			// 포스트픽스스택의 탑 내용물 우선순위가 x의 우선순위보다 작을 때까지 모두 빼내고, 현재 x는 포스트픽스 스택에 넣기
-			while(getPriority(postfixStack[postfixStackTop]) >= current_priority)
+			// 스택이 비어있지 않으며, 현재 x의 우선순위가 현재 포스트픽스 스택의 탑 내용물보다 작은(느린) 나머지 경우에만
+			// 포스트픽스스택의 탑 내용물 우선순위가 x의 우선순위보다 작아지거나 다 뽑을 때까지 모두 빼내고, 현재 x는 포스트픽스 스택에 넣기
+			while(postfixStackTop != -1 && (isp[getPriority(postfixStack[postfixStackTop])] >= icp[current_priority]))
 			{
 				temp = postfixPop();
 				charCat(&temp);
-			} //현재 x의 우선순위
+			} 
 			postfixPush(x);
 		} 
 
@@ -243,7 +215,6 @@ void toPostfix()
 		charCat(&temp);
 	}
 
-	/* 필요한 로직 완성 */
 
 }
 void debug()
@@ -290,7 +261,7 @@ void evaluation()
 		{
 			evalPush(x-48); // operand라면, 숫자로 변환해서 스택에 추가
 		}
-		else
+		else // 아닌 경우는, 연산 진행
 		{
 				switch(x) 
 				{
@@ -325,8 +296,10 @@ void evaluation()
 				}
 		}
 
-
 		exp += 1;
+
 	}
+
+	evalResult = evalPop();
 	/* postfixExp, evalStack을 이용한 계산 */
 }
