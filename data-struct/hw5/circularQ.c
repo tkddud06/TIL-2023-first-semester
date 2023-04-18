@@ -140,7 +140,7 @@ void enQueue(QueueType *cQ, element item)
 	}
 	else
 	{
-		return 0;
+		return;
 	}
 }
 
@@ -155,7 +155,7 @@ void deQueue(QueueType *cQ, element *item)
 	}
 	else
 	{
-		return 0;
+		return;
 	}
 }
 

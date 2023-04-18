@@ -1,9 +1,8 @@
 
 from tkinter import *
-from tkinter import messagebox # 얠 안하면 작동 안하네. *이 모두 임포드한다는 의미가 아닌가...? tkinter모듈 자체로부터 함수들을 갖고오는게 *이고, tkinter 패키지내의 모듈접근은
-from tkinter import filedialog
-from tkinter.simpledialog import *
-# 저리 하는 그런느낌인가? 맞는거같아 아마.
+from tkinter import messagebox # 
+from tkinter import filedialog # import는 무조건 모듈을 임포트하는 얘라고 생각하면 됨. 아마 tkinter는 패키지이면서, 모듈로서도 기능하나봄. 메시지박스 등은 애에 속하는 모듈이고,
+from tkinter.simpledialog import * # from import 형식도 같음. from에는 모듈이 들가고, import는 그 모듈에 속한 함수. 이렇게하면 .붙이지 않고 바로사용 가능
 
 def printmessagebox():
     messagebox.showinfo("타이틀", "ㅋㅋㅋ")
