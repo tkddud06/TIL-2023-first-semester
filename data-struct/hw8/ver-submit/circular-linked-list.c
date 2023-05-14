@@ -52,6 +52,7 @@ int main()
 		printf(" Insert First  = f           Delete First  = t\n");
 		printf(" Invert List   = r           Quit          = q\n");
 		printf("----------------------------------------------------------------\n");
+		printf("[--------------  [최상영]  	[2022041062]  --------------]\n");
 
 		printf("Command = ");
 		scanf(" %c", &command);
@@ -102,7 +103,7 @@ int main()
 
 	}while(command != 'q' && command != 'Q');
 
-	return 1;
+	return 0;
 }
 
 
@@ -117,7 +118,7 @@ int initialize(listNode** h) {
 	(*h)->rlink = *h;
 	(*h)->llink = *h;
 	(*h)->key = -9999;
-	return 1;
+	return 0;
 }
 
 /* 메모리 해제 */
@@ -197,7 +198,7 @@ int insertLast(listNode* h, int key) {
 	h->llink = prev->rlink; // h의 llink를 새 노드에 연결
 	
 
-	return 1;
+	return 0;
 }
 
 
@@ -207,7 +208,7 @@ int insertLast(listNode* h, int key) {
 int deleteLast(listNode* h) {
 	if(h->rlink == h) // 빈 리스트인 경우
 	{
-		printf("빈 리스트라 삭제할 수 없습니다.");
+		printf("nothing to delete.\n");
 		return 1;
 	}
 
@@ -216,7 +217,7 @@ int deleteLast(listNode* h) {
 	h->llink = del->llink; // 지울 노드의 오른쪽 노드, 즉 h의 llink를 지울 노드의 왼쪽 노드에 연결
 	free(del); // 지울 노드 free
 	
-	return 1;
+	return 0;
 }
 
 
@@ -245,7 +246,7 @@ int insertFirst(listNode* h, int key) {
 	h->rlink->llink = h; // 새로운 노드의 llink에 헤더, 즉 h를 연결
 	next->llink = h->rlink; // 새로운 노드의 다음 노드인 next의 link에 새 노드 연결
 	
-	return 1;
+	return 0;
 }
 
 /**
@@ -255,7 +256,7 @@ int deleteFirst(listNode* h) {
 	
 	if(h->rlink == h) // 리스트가 빈 상태라면
 	{
-		printf("빈 리스트라 삭제할 수 없습니다.");
+		printf("nothing to delete.\n");
 		return 1;
 	}
 
@@ -266,7 +267,7 @@ int deleteFirst(listNode* h) {
 	h->rlink = del->rlink; // 지울 노드의 왼쪽 노드인 헤더, 즉 h의 rlink를 자신의 다음 노드로 연결
 	free(del); // 제거할 노드 free
 	
-	return 1;
+	return 0;
 
 }
 
@@ -275,10 +276,17 @@ int deleteFirst(listNode* h) {
  * 리스트의 링크를 역순으로 재 배치
  */
 int invertList(listNode* h) {
+
+	if(h->rlink == h) // 빈 리스트인 경우
+	{
+		printf("nothing to invert...\n");
+		return 0;
+	}
+
 	listNode* prev = NULL;
 	listNode* ptr = h;
 	
-	do //////////////////////////////////////////// 여기도 반복문 순서 주의. 모든 노드를 다 살피고, 한 반복문만에 컷내려면 잘 계산을 해야한다. 뭐 생각 잘 안나면, 한두개 양쪽으로 빼먹고 수동으로 논리적으로 써줘도 되긴해.
+	do
 	{
 		prev = ptr;
 		ptr = ptr->rlink;
@@ -335,7 +343,7 @@ int deleteNode(listNode* h, int key) {
 	
 	if(h->rlink == h) // 빈 리스트인 경우
 	{
-		printf("빈 리스트라 삭제할 수 없습니다.");
+		printf("nothing to delete.\n");
 		return 1;
 	}
 
@@ -344,10 +352,8 @@ int deleteNode(listNode* h, int key) {
 	{
 		del = del->rlink; // 다음 노드로 이동
 		if(del == h) // 만약 끝까지 다 돌았음에도 찾지 못했다면
-		// 얘를 위에 쓰면, 쓸데없이 한번 더 도는거지 while문이. 이미 위에서 체크한건데, 또하는셈이고, 쓸데없이 첫번째 검사를 수행하는거지. 노드 2개짜리라 치면, 검사>수행/>검사>수행/>검사// 컷. 순인거고 이러면(3번)
-			// 이렇게 쓰면 수행>검사/>수행>검사// 컷 순인거지. 넘어가는 횟수는 같지만, 검사를 쓸데없이 한번 더 하는거지. ///////////////////////////////////////////////////////
 		{
-			printf("해당 키를 가진 노드를 찾지 못했습니다.");
+			printf("cannot find the node for key = %d\n", key);
 			return 1;
 		}
 	}
