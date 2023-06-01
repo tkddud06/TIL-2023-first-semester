@@ -28,3 +28,18 @@ n2 = length(b)
 before = c(67,88,82,79,76,56,67,77,70,58,61,71)
 after = c(60,89,79,76,70,50,61,73,72,54,57,70)
 t.test(before,after, alt="less", mu=0, paired=T)
+
+n=80
+phat = 0.2
+se = sqrt(phat*(1-phat)/n)
+error = qnorm(0.975)*se
+LCL = phat - error
+UCL = phat + error
+z = (phat-0.18)/sqrt(0.18*(1-0.18)/n)
+
+phat1=420/500
+phat2=380/500
+
+se= sqrt(((phat1*(1-phat1))/500)+((phat2*(1-phat2))/500))
+LCL = phat1-phat2 - qnorm(0.975)*se
+UCL = phat1-phat2 + qnorm(0.975)*se
