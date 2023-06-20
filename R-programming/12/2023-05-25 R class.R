@@ -28,8 +28,6 @@ round(c(f=f0, CV=falpha, p_value=pval),4)
 var.test(x,y) # 등분산 추정, 양측검정 ( 기본값 95% 추정)
 
 var.test(x,y,alt="greater",conf.level=0.9) # 등분산 추정, 단측검정
-# 여기도 F보고 하는거겠지.
-# 결과가 저런데 왜 등분산이란 거지? 신뢰구간 안에 들면, 귀무가설이 참인건가?
 
 n1 = length(x)
 n2 = length(y)
@@ -69,10 +67,7 @@ n=length(before)
 se=sqrt(var(d)/n) # 표준오차
 cv=qt(0.975,n-1) # 임계치
 t0=(mean(d)-d0)/se # 검정통계량
-pval=2*(pt(t0,n-1)) # p-value # 여기서 1을 안 빼주는 이유. 지금 -값이고 누적된 값이니까(??)
-# 그냥 하면 된대 책이랑 다르게. 뭔소린지 잘 모르겠네.
+pval=2*(pt(t0,n-1)) # p-value # 여기서 1을 안 빼주는 이유. 지금 이미 -값이고, 왼쪽부터 누적된 값이기 때문.
 round(c(mean_after=mean(after),mean_before=(mean(before)),T=t0,CV=cv,p_value=pval),3)
 
 t.test(before, after, mu=5, paired=T) # paired를 써줘야 대응비교가 가능.
-
-# test 보는 방법 정확히, 그리고 단측 양측 차이좀 살펴봐야겠다.

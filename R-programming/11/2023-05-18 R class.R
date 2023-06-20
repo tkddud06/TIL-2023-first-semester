@@ -43,7 +43,6 @@ var.test(x,y,alt="greater",conf.level=0.95) # alt= 대립가설
 # 그러면 
 
 var.test(x,y,alt="greater",conf.level=0.90) # 하고, 
-#( 유의수준 5%이므로 근데 왜 5%인데 90으로 두는거지?)
 var.test(x,y,conf.level=0.9) # 하면 된다.
 
 x = c(105,108,86,103,104,107,124,105)

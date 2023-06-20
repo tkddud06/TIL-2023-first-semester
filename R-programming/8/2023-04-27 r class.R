@@ -104,7 +104,7 @@ LCL = phat - cl
 UCL = phat + cl
 
 round(LCL,digit=3)
-round(UCL,digit=3) # 책이랑 뭐가 같다는거야....?
+round(UCL,digit=3)
 
 # 연습문제 2번. 95% 구간추정도 할 것.
 
@@ -130,7 +130,7 @@ x = 165
 
 phat = x/n
 
-se_phat = phat*(phat-1)/n #phat 표준오차 왜 이렇게 생겼는지 알아보기.
+se_phat = phat*(phat-1)/n 
 
 cl = se+phat*qnorm(0.975)
 
