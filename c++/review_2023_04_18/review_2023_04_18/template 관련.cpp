@@ -38,7 +38,7 @@ int main()
 	cout << a.a << " " << a.b << endl;
 	cout << b.a << " " << b.b << endl;
 	cout << pluss<double>(1.3, 2) << endl; // plus로 하면 모호하다는 오류 나는데, 이름공간 문제래. (1.2, 3) 이런식으로 달라질 때는, template 자체를 2개 선언하던지, 넘겨줄때 <int>혹은 <double>등으로 고정시켜줘야됨. 함수이름뒤에 쓰면된다.
-	// 아마 std 안에도 plus란 이름을 사용하는게 있나봄. 나중에 찾아보자.
+	// std 안에도 plus란 이름을 사용하는게 있음.
 	cout << cast<int, double>(1.3) << endl; // 해당 케이스처럼 반환을 따로 template로 명시하거나 하는 경우는, 형식 적어주는거 필수. T2를 받아야 한다 생각하면됨.
 	return 0;
 }

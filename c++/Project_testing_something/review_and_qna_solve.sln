@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2023-03-21-3week", "2023-03
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2023-03-21-Multi-source-test", "Multi-source-test\Multi-source-test.vcxproj", "{E4801927-DB66-4E5D-8AF8-D769A9905D65}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2023-03-28-4week", "2023-03-28-4week\2023-03-28-4week.vcxproj", "{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -43,14 +41,6 @@ Global
 		{E4801927-DB66-4E5D-8AF8-D769A9905D65}.Release|x64.Build.0 = Release|x64
 		{E4801927-DB66-4E5D-8AF8-D769A9905D65}.Release|x86.ActiveCfg = Release|Win32
 		{E4801927-DB66-4E5D-8AF8-D769A9905D65}.Release|x86.Build.0 = Release|Win32
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Debug|x64.ActiveCfg = Debug|x64
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Debug|x64.Build.0 = Debug|x64
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Debug|x86.ActiveCfg = Debug|Win32
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Debug|x86.Build.0 = Debug|Win32
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Release|x64.ActiveCfg = Release|x64
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Release|x64.Build.0 = Release|x64
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Release|x86.ActiveCfg = Release|Win32
-		{E3000D70-5CF6-421B-8CEB-9E7A29DFE435}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
